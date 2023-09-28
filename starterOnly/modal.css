@@ -527,3 +527,11 @@ footer {
   }
 }
 
+.error-message {
+  color: red;
+  display: none;
+}
+
+.visible {
+  display: block;
+}
