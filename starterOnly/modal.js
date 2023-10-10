@@ -82,6 +82,10 @@ function checkFirstName() {
   }
 }
 
+firstNameInput.addEventListener("blur", function () {
+  checkFirstName();
+});
+
 /**
  * Checks the last name input value.
  *
@@ -105,6 +109,11 @@ function checkLastName() {
     return true;
   }
 }
+
+lastNameInput.addEventListener("blur", function (event) {
+  event.preventDefault();
+  checkLastName();
+});
 
 /**
  * Validates an email input value.
@@ -131,6 +140,9 @@ function checkEmail() {
   }
 }
 
+emailInput.addEventListener("blur", function () {
+  checkEmail();
+})
 /**
  * Check if the birthdate value is valid.
  *
@@ -179,8 +191,6 @@ function checkQuantity() {
     quantityError.classList.remove("visible");
     return true;
   }
-
-
 }
 
 /**

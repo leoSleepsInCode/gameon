@@ -8,7 +8,18 @@
   margin: 0;
   padding: 0;
 }
-/* Landing Page */
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+/**************** Landing Page ****************/
 
 body {
   margin: 0;
@@ -68,36 +79,6 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -109,8 +90,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-button {
@@ -135,7 +114,7 @@ main {
   font-family: var(--font-slab);
 }
 
-/* Modal form */
+/**************** Modal form ****************/
 
 .button {
   background: #fe142f;
@@ -186,6 +165,7 @@ main {
   margin: 15px auto;
 }
 
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
@@ -224,12 +204,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -331,7 +306,9 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
-/* custom select styles */
+
+/****** Custom select styles *****/
+
 .custom-select {
   position: relative;
   font-family: Arial;
@@ -346,7 +323,8 @@ input[data-error]::after {
   background-color: #fff;
 }
 
-/* Style the arrow inside the select element: */
+/******* Style the arrow inside the select element: *****/
+
 .select-selected:after {
   position: absolute;
   content: "";
@@ -361,7 +339,8 @@ input[data-error]::after {
   border-radius: 5px 0 5px 0;
 }
 
-/* Point the arrow upwards when the select box is open (active): */
+/**** Point the arrow upwards when the select box is open (active): ****/
+
 .select-selected.select-arrow-active:after {
   transform: rotate(135deg);
   top: 13px;
@@ -378,7 +357,8 @@ input[data-error]::after {
   height: 48px;
 }
 
-/* Style items (options): */
+/**** Style items (options): ****/
+
 .select-items {
   position: absolute;
   background-color: #fff;
@@ -388,7 +368,8 @@ input[data-error]::after {
   z-index: 99;
 }
 
-/* Hide the items when the select box is closed: */
+/**** Hide the items when the select box is closed: ****/
+
 .select-hide {
   display: none;
 }
@@ -397,7 +378,9 @@ input[data-error]::after {
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
-/* custom select end */
+
+/***** Custom select end ****/
+
 .text-label {
   font-weight: normal;
   font-size: 16px;
@@ -476,6 +459,61 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/****** Error Messages *****/
+
+.error-message {
+  display: none;
+  padding-top: 3px;
+  color: red;
+  font-size: 15px;
+}
+
+.visible {
+  display: block;
+}
+
+/****************** Medias Screens ********************/
+
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .topnav a {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive {
+    position: relative;
+  }
+
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -515,23 +553,4 @@ footer {
   }
 }
 
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
-  }
-}
 
-.error-message {
-  display: none;
-  padding-top: 3px;
-  color: red;
-  font-size: 15px;
-}
-
-.visible {
-  display: block;
-}
