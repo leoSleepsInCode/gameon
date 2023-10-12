@@ -9,6 +9,8 @@ const modalButton       = document.querySelectorAll(".modal-button");
 const formData          = document.querySelectorAll(".formData");
 const radioButtonInputs = document.getElementsByName("location");
 
+// const form             = document.querySelector("form[name='reserve']");
+const form             = document.getElementById("reserveForm");
 const modalBackground  = document.querySelector(".background");
 const closeButton      = document.querySelector(".close");
 const firstNameError   = document.getElementById("firstNameError");
@@ -40,13 +42,40 @@ function editNav() {
     nav.className = "topnav";
   }
 }
+
+// function hideThankYouMessage() {
+//   let thankYouMessage = document.querySelector(".thank-you-message");
+//   if (thankYouMessage) {
+//     thankYouMessage.remove();
+//     recreateForm();
+//   }
+// }
+
+// function recreateForm() {
+//   let form = document.createElement("form");
+
+//   form.name = "reserve";
+//   form.action = "index.html";
+//   form.method = "get";
+//   form.id = "reserveForm";
+
+//   let modalBody = document.querySelector(".modal-body");
+//   modalBody.appendChild(form);
+// }
+
 /**
  * Launches the modal by setting the display property of modalbg to "block".
  */
+
 function launchModal() {
   console.log("launchModal");
 
   modalBackground.style.display = "block";
+
+  form.reset()
+  console.log("form.reset()");
+
+  // hideThankYouMessage();
 }
 
 /**
@@ -64,10 +93,10 @@ function closeModal() {
  * @return {boolean} Returns false if the first name input is invalid, otherwise returns true.
  */
 function checkFirstName() {
-  console.log("checkFirstName");
+  // console.log("checkFirstName");
 
   let firstNameValue = firstNameInput.value.trim();
-  console.log("fisrtNameValue", firstNameValue);
+  // console.log("fisrtNameValue", firstNameValue);
 
   if (firstNameValue.length < 2 || firstNameValue === "") {
     firstNameError.textContent = "Votre prénom doit comporter au moins 2 caractères";
@@ -82,20 +111,16 @@ function checkFirstName() {
   }
 }
 
-firstNameInput.addEventListener("blur", function () {
-  checkFirstName();
-});
-
 /**
  * Checks the last name input value.
  *
  * @return {boolean} Returns false if the last name value is invalid, otherwise returns true.
  */
 function checkLastName() {
-  console.log("checkLastName");
+  // console.log("checkLastName");
 
   let lastNameValue = lastNameInput.value.trim();
-  console.log("lastNameValue", lastNameValue);
+  // console.log("lastNameValue", lastNameValue);
 
   if (lastNameValue.length < 2 || lastNameValue === "") {
     lastNameError.textContent = "Votre nom doit comporter au moins 2 caractères";
@@ -110,21 +135,16 @@ function checkLastName() {
   }
 }
 
-lastNameInput.addEventListener("blur", function (event) {
-  event.preventDefault();
-  checkLastName();
-});
-
 /**
  * Validates an email input value.
  *
  * @return {boolean} Returns false if the email value is invalid, true otherwise.
  */
 function checkEmail() {
-  console.log("checkEmail");
+  // console.log("checkEmail");
 
   let emailValue = emailInput.value.trim();
-  console.log("emailValue", emailValue);
+  // console.log("emailValue", emailValue);
 
   if (!emailRegex.test(emailValue)) {
     emailError.textContent = "Veuillez saisir une adresse électronique valide";
@@ -140,9 +160,7 @@ function checkEmail() {
   }
 }
 
-emailInput.addEventListener("blur", function () {
-  checkEmail();
-})
+
 /**
  * Check if the birthdate value is valid.
  *
@@ -157,6 +175,7 @@ function checkBirthdate () {
   if (birthdateValue === "") {
     birthdateError.textContent = "Veuillez saisir une date de naissance";
     birthdateError.classList.add("visible");
+    console.log("birthdateError", birthdateError);
     birthdateInput.focus();
     return false;
   } 
@@ -182,6 +201,7 @@ function checkQuantity() {
   if (isNaN(quantityValue)) {
     quantityError.textContent = "Vous devez saisir un nombre de tournoi ou mettre 0 si vous n'avez jamais participé";
     quantityError.classList.add("visible");
+    console.log("quantityError", quantityError);
     quantityInput.focus();
     return false;
   } 
@@ -201,7 +221,7 @@ function checkQuantity() {
 function checkRadioButton() {
   console.log("checkRadioButton");
 
-  let radioButtonSelected = true;
+  let radioButtonSelected = false;
   console.log("radioButtonSelected", radioButtonSelected);
 
   for (let i = 0; i < radioButtonInputs.length; i++) {
@@ -214,6 +234,7 @@ function checkRadioButton() {
   if (!radioButtonSelected) {
     radioButtonError.textContent = "Veuillez choisir une ville";
     radioButtonError.classList.add("visible");
+    console.log("radioButtonError", radioButtonError);
     radioButtonInputs[0].focus();
     return false;
   } 
@@ -230,10 +251,10 @@ function checkRadioButton() {
  * @return {boolean} False if the terms checkbox is not checked, true otherwise.
  */
 function checkTerms() {
-  console.log("checkTerms");
+  // console.log("checkTerms");
 
   let termCheckbox = termsCheckbox1.checked;
-  console.log("termCheckbox", termCheckbox);
+  // console.log("termCheckbox", termCheckbox);
 
   if (!termCheckbox) {
     termsError.textContent = "Veuillez accepter les conditions d'utilisation";
@@ -247,6 +268,25 @@ function checkTerms() {
     termsError.classList.remove("visible");
     return true;
   }
+}
+
+/**
+ * Adds event listeners to the input fields.
+ */
+function addListeners() {
+
+  firstNameInput.addEventListener("blur", function () {
+    checkFirstName();
+  });
+
+  lastNameInput.addEventListener("blur", function (event) {
+    event.preventDefault();
+    checkLastName();
+  });
+
+  emailInput.addEventListener("blur", function () {
+    checkEmail();
+  })
 }
 
 /**
@@ -267,13 +307,13 @@ function validateForm(event) {
   const isRadioButtonValid = checkRadioButton();
   const isTermsValid = checkTerms();
 
-  console.log("isFirstNameValid", isFirstNameValid);
-  console.log("isLastNameValid", isLastNameValid);
-  console.log("isEmailValid", isEmailValid);
-  console.log("isBirthdateValid", isBirthdateValid);
-  console.log("isQuantityValid", isQuantityValid);
-  console.log("isRadioButtonValid", isRadioButtonValid);
-  console.log("isTermsValid", isTermsValid);
+  // console.log("isFirstNameValid", isFirstNameValid);
+  // console.log("isLastNameValid", isLastNameValid);
+  // console.log("isEmailValid", isEmailValid);
+  // console.log("isBirthdateValid", isBirthdateValid);
+  // console.log("isQuantityValid", isQuantityValid);
+  // console.log("isRadioButtonValid", isRadioButtonValid);
+  // console.log("isTermsValid", isTermsValid);
 
   return (
     isFirstNameValid &&
@@ -286,36 +326,50 @@ function validateForm(event) {
   );
 }
 
+
 /**
- * Shows a thank you message to the user.
- *
+ * Creates and displays a thank you message after a successful reservation.
  */
 function showThankYouMessage() {
-  console.log("showThankYouMessage");
-
   let thankYouMessage = document.createElement("p");
-  thankYouMessage.classList.add("thank-you-message");
+  thankYouMessage.classList.add("thank-you-message", "thank-you-modal");
   thankYouMessage.textContent = "Merci pour votre réservation!";
 
   let formData = document.querySelector("form[name='reserve']");
   formData.parentNode.replaceChild(thankYouMessage, formData);
+
+  let closingButton = document.createElement("input");
+  closingButton.type = "button";
+  closingButton.classList.add("button-submit", "button");
+  closingButton.value = "Fermer";
+
+  thankYouMessage.insertAdjacentElement("afterend", closingButton);
 }
 
 //************* MAIN *********** */
 
 document.addEventListener("DOMContentLoaded", function () {
-  modalButton.forEach((button) => button.addEventListener("click", launchModal));
-  closeButton.addEventListener("click", closeModal);
+  addListeners();
 
-  let form = document.querySelector("form[name='reserve']");
-  form.addEventListener("submit", function(event) {
-    event.preventDefault(); 
+  modalButton.forEach((button) => button.addEventListener("click", launchModal));
+  closeButton.addEventListener("click", function () {
+    closeModal();
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
     if (validateForm(event)) {
-      form.submit(); 
+      form.submit();
+      showThankYouMessage();
+    }
+  });
 
-      showThankYouMessage(); 
+  document.addEventListener("click", function (event) {
+    if (event.target === modalBackground) {
+      closeModal();
     }
   });
 });
+
 

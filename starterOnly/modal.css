@@ -162,6 +162,7 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  max-height: 850px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -495,6 +496,29 @@ footer {
 .visible {
   display: block;
 }
+
+/****** Thank you modal *****/
+
+.thank-you-modal {
+  /* margin: 5% auto; */
+  width: 100%;
+  width: 400px;
+  min-height: 700px;
+  max-height: 850px;
+  background: #232323;
+  border-radius: 10px;
+  /* overflow: hidden; */
+  /* position: relative; */
+  color: #fff;
+  padding-top: 10px;
+}
+
+.thank-you-message {
+  padding-top: 250px;
+  position: relative;
+  padding-right: 10px;
+  text-align: center;
+  font-size: 2.5rem;}
 
 /****************** Medias Screens ********************/
 
