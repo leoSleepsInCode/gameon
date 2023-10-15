@@ -162,7 +162,6 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
-  max-height: 850px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -501,10 +500,9 @@ footer {
 
 .thank-you-modal {
   /* margin: 5% auto; */
-  width: 100%;
   width: 400px;
   min-height: 700px;
-  max-height: 850px;
+  max-height: 950px;
   background: #232323;
   border-radius: 10px;
   /* overflow: hidden; */

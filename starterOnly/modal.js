@@ -2,17 +2,18 @@
 
 // *********** CONSTANTS ***********
 
-const emailRegex = /^\S+@\S+\.\S+$/;
+const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 
 // DOM Elements
 const modalButton       = document.querySelectorAll(".modal-button");
 const formData          = document.querySelectorAll(".formData");
+const modalBody         = document.querySelector(".modal-body");
+const closeButton       = document.querySelector(".close");
+const closingButton     = document.createElement("input");
 const radioButtonInputs = document.getElementsByName("location");
 
-// const form             = document.querySelector("form[name='reserve']");
-const form             = document.getElementById("reserveForm");
 const modalBackground  = document.querySelector(".background");
-const closeButton      = document.querySelector(".close");
+const form             = document.getElementById("reserveForm");
 const firstNameError   = document.getElementById("firstNameError");
 const firstNameInput   = document.getElementById("first");
 const lastNameError    = document.getElementById("lastNameError");
@@ -43,25 +44,18 @@ function editNav() {
   }
 }
 
-// function hideThankYouMessage() {
-//   let thankYouMessage = document.querySelector(".thank-you-message");
-//   if (thankYouMessage) {
-//     thankYouMessage.remove();
-//     recreateForm();
-//   }
-// }
-
-// function recreateForm() {
-//   let form = document.createElement("form");
-
-//   form.name = "reserve";
-//   form.action = "index.html";
-//   form.method = "get";
-//   form.id = "reserveForm";
-
-//   let modalBody = document.querySelector(".modal-body");
-//   modalBody.appendChild(form);
-// }
+function removeThankYouMessage() {
+  console.log("removeThankYouMessage");
+  
+  let thankYouMessage = document.querySelector(".thank-you-message");
+  if (thankYouMessage) {
+    thankYouMessage.remove();
+    closingButton.remove();
+    console.log("thankYouMessage removed");
+    modalBody.appendChild(form);
+    console.log("form appended");
+  }
+}
 
 /**
  * Launches the modal by setting the display property of modalbg to "block".
@@ -72,10 +66,7 @@ function launchModal() {
 
   modalBackground.style.display = "block";
 
-  form.reset()
-  console.log("form.reset()");
-
-  // hideThankYouMessage();
+  removeThankYouMessage();
 }
 
 /**
@@ -146,7 +137,7 @@ function checkEmail() {
   let emailValue = emailInput.value.trim();
   // console.log("emailValue", emailValue);
 
-  if (!emailRegex.test(emailValue)) {
+  if (!EMAIL_REGEX.test(emailValue)) {
     emailError.textContent = "Veuillez saisir une adresse électronique valide";
     emailError.classList.add("visible");
     emailInput.focus();
@@ -338,12 +329,31 @@ function showThankYouMessage() {
   let formData = document.querySelector("form[name='reserve']");
   formData.parentNode.replaceChild(thankYouMessage, formData);
 
-  let closingButton = document.createElement("input");
   closingButton.type = "button";
   closingButton.classList.add("button-submit", "button");
   closingButton.value = "Fermer";
+  closingButton.addEventListener("click", closeModal);
 
   thankYouMessage.insertAdjacentElement("afterend", closingButton);
+}
+
+/**
+ * Submits the form and resets it if the form is valid.
+ *
+ * @param {HTMLFormElement} form - The form to be submitted.
+ * @return {function} - The event handler function.
+ */
+function handleSubmitForm(form) {
+  return function (event) {
+    event.preventDefault();
+
+    if (validateForm(event)) {
+      form.submit();
+      form.reset();
+      console.log("form.reset()");
+      showThankYouMessage();
+    }
+  };
 }
 
 //************* MAIN *********** */
@@ -352,18 +362,9 @@ document.addEventListener("DOMContentLoaded", function () {
   addListeners();
 
   modalButton.forEach((button) => button.addEventListener("click", launchModal));
-  closeButton.addEventListener("click", function () {
-    closeModal();
-  });
+  closeButton.addEventListener("click", closeModal);
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    if (validateForm(event)) {
-      form.submit();
-      showThankYouMessage();
-    }
-  });
+  form.addEventListener("submit", handleSubmitForm(form));
 
   document.addEventListener("click", function (event) {
     if (event.target === modalBackground) {
@@ -371,5 +372,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-
