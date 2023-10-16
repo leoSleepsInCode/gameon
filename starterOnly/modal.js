@@ -31,19 +31,6 @@ const termsError       = document.getElementById("termsError");
 
 // *********** FUNCTIONS ***********
 
-// function editNav() {
-//   console.log("editNav");
-
-//  let nav = document.getElementById("myTopnav");
-
-//   if (nav.className === "topnav") {
-//     nav.className += "responsive";
-
-//   } else {
-//     nav.className = "topnav";
-//   }
-// }
-
 function toggleMenu() {
     var navbar = document.querySelector(".main-navbar");
     navbar.classList.toggle("show-menu");
@@ -95,6 +82,7 @@ function checkFirstName() {
   // console.log("fisrtNameValue", firstNameValue);
 
   if (firstNameValue.length < 2 || firstNameValue === "") {
+    firstNameInput.classList.add("error-input");
     firstNameError.textContent = "Votre prénom doit comporter au moins 2 caractères";
     firstNameError.classList.add("visible");
     firstNameInput.focus();
@@ -119,6 +107,7 @@ function checkLastName() {
   // console.log("lastNameValue", lastNameValue);
 
   if (lastNameValue.length < 2 || lastNameValue === "") {
+    lastNameInput.classList.add("error-input");
     lastNameError.textContent = "Votre nom doit comporter au moins 2 caractères";
     lastNameError.classList.add("visible");
     lastNameInput.focus();
@@ -143,6 +132,7 @@ function checkEmail() {
   // console.log("emailValue", emailValue);
 
   if (!EMAIL_REGEX.test(emailValue)) {
+    emailInput.classList.add("error-input");
     emailError.textContent = "Veuillez saisir une adresse électronique valide";
     emailError.classList.add("visible");
     emailInput.focus();
@@ -168,6 +158,7 @@ function checkBirthdate () {
   console.log("birthdateValue", birthdateValue);
 
   if (birthdateValue === "") {
+    birthdateInput.classList.add("error-input");
     birthdateError.textContent = "Veuillez saisir une date de naissance";
     birthdateError.classList.add("visible");
     console.log("birthdateError", birthdateError);
@@ -194,6 +185,7 @@ function checkQuantity() {
   console.log("quantityValue", quantityValue);
 
   if (isNaN(quantityValue)) {
+    quantityInput.classList.add("error-input");
     quantityError.textContent = "Vous devez saisir un nombre de tournoi ou mettre 0 si vous n'avez jamais participé";
     quantityError.classList.add("visible");
     console.log("quantityError", quantityError);
