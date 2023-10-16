@@ -31,17 +31,22 @@ const termsError       = document.getElementById("termsError");
 
 // *********** FUNCTIONS ***********
 
-function editNav() {
-  console.log("editNav");
+// function editNav() {
+//   console.log("editNav");
 
- let nav = document.getElementById("myTopnav");
+//  let nav = document.getElementById("myTopnav");
 
-  if (nav.className === "topnav") {
-    nav.className += "responsive";
+//   if (nav.className === "topnav") {
+//     nav.className += "responsive";
 
-  } else {
-    nav.className = "topnav";
-  }
+//   } else {
+//     nav.className = "topnav";
+//   }
+// }
+
+function toggleMenu() {
+    var navbar = document.querySelector(".main-navbar");
+    navbar.classList.toggle("show-menu");
 }
 
 function removeThankYouMessage() {
@@ -84,7 +89,7 @@ function closeModal() {
  * @return {boolean} Returns false if the first name input is invalid, otherwise returns true.
  */
 function checkFirstName() {
-  // console.log("checkFirstName");
+  console.log("checkFirstName");
 
   let firstNameValue = firstNameInput.value.trim();
   // console.log("fisrtNameValue", firstNameValue);
@@ -108,7 +113,7 @@ function checkFirstName() {
  * @return {boolean} Returns false if the last name value is invalid, otherwise returns true.
  */
 function checkLastName() {
-  // console.log("checkLastName");
+  console.log("checkLastName");
 
   let lastNameValue = lastNameInput.value.trim();
   // console.log("lastNameValue", lastNameValue);
@@ -132,7 +137,7 @@ function checkLastName() {
  * @return {boolean} Returns false if the email value is invalid, true otherwise.
  */
 function checkEmail() {
-  // console.log("checkEmail");
+  console.log("checkEmail");
 
   let emailValue = emailInput.value.trim();
   // console.log("emailValue", emailValue);
@@ -150,7 +155,6 @@ function checkEmail() {
     return true;
   }
 }
-
 
 /**
  * Check if the birthdate value is valid.
@@ -236,13 +240,14 @@ function checkRadioButton() {
     return true;
   }
 }
+
 /**
  * Check if the terms checkbox is checked.
  *
  * @return {boolean} False if the terms checkbox is not checked, true otherwise.
  */
 function checkTerms() {
-  // console.log("checkTerms");
+  console.log("checkTerms");
 
   let termCheckbox = termsCheckbox1.checked;
   // console.log("termCheckbox", termCheckbox);
@@ -317,7 +322,6 @@ function validateForm(event) {
   );
 }
 
-
 /**
  * Creates and displays a thank you message after a successful reservation.
  */
@@ -343,7 +347,7 @@ function showThankYouMessage() {
  * @param {HTMLFormElement} form - The form to be submitted.
  * @return {function} - The event handler function.
  */
-function handleSubmitForm(form) {
+function submitForm(form) {
   return function (event) {
     event.preventDefault();
 
@@ -364,7 +368,7 @@ document.addEventListener("DOMContentLoaded", function () {
   modalButton.forEach((button) => button.addEventListener("click", launchModal));
   closeButton.addEventListener("click", closeModal);
 
-  form.addEventListener("submit", handleSubmitForm(form));
+  form.addEventListener("submit", submitForm(form));
 
   document.addEventListener("click", function (event) {
     if (event.target === modalBackground) {

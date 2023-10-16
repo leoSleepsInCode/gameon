@@ -67,12 +67,14 @@ img {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  text-decoration: underline;
 }
 
 .topnav a.active {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  text-decoration: underline;
 }
 
 .topnav .icon {
@@ -414,8 +416,7 @@ input {
   color: #fff;
   position: relative;
   text-align: left;
-  /* min-width: 424px; */
-  min-width: 500px;
+  min-width: 390px;
 }
 
 .hero-content::after {
@@ -488,7 +489,7 @@ footer {
 .error-message {
   display: none;
   padding-top: 3px;
-  color: red;
+  color: #fe142f;
   font-size: 15px;
 }
 
@@ -499,14 +500,12 @@ footer {
 /****** Thank you modal *****/
 
 .thank-you-modal {
-  /* margin: 5% auto; */
+
   width: 400px;
   min-height: 700px;
   max-height: 950px;
   background: #232323;
-  border-radius: 10px;
-  /* overflow: hidden; */
-  /* position: relative; */
+  border-radius: 10px;/
   color: #fff;
   padding-top: 10px;
 }
@@ -521,6 +520,7 @@ footer {
 /****************** Medias Screens ********************/
 
 @media screen and (max-width: 540px) {
+
   .topnav a {
     display: none;
   }
@@ -528,67 +528,71 @@ footer {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+    /* margin-top: -15px; */
+  }
+
+  body .header-logo img {
+    padding-left: 12px;
+  }
+
+  main .hero-content {
+    padding: 0;
+  }
+
+  .hero-section .hero-content > h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    word-break: break-all;
+  }
+
+  .hero-section .hero-content > p {
+    margin-top: 27px;
   }
 }
 
 @media screen and (max-width: 768px) {
 
-  .topnav a {
-    display: none;
+  .header-logo img {
+    margin-top: 15px;
+    padding-left: 30px;
+    height: 1.5rem;
   }
-
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-
-  .topnav.responsive {
-    position: relative;
-  }
-
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
+  
   .hero-section {
     display: block;
     box-shadow: unset;
+  }
+
+  .hero-content > .button-signup {
+    display: none;
   }
 
   .hero-content {
     background: #fff;
     color: #000;
     padding: 20px;
+    min-width: 300px;
   }
 
   .hero-content::after {
     content: unset;
   }
 
-  .hero-headline {
-    font-size: 2rem;
-    word-wrap: break-all;
+  .hero-content .hero-headline {
+    font-size: 3rem;
+    font-weight: 900;
   }
 
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
-    word-wrap: break-all;
+    font-size: 1rem;
   }
 
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
   }
+
   .hero-section > .button-signup {
     display: block;
     margin: 32px auto 10px;
@@ -601,9 +605,96 @@ footer {
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 810px) {
+
+  .topnav  {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .topnav .main-navbar {
+    padding-top: 0;
+  }
+
+  .topnav a {
+      display: none;
+    }
+
+  .main-navbar {
+    position: relative;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+  }
+    
+  .main-navbar {
+      position: relative;
+  }
+  
+  .main-navbar.show-menu a:not(.fa-bars) {
+      display: block;
+      z-index: 9999;
+  }
+  
+  .main-navbar.show-menu .fa-bars {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 9999;
+  }
+
+
+  /* .main-navbar span {
+    color: #fe142f;
+    
+  }*/
+  
+  .topnav a.icon {
+     
+      display: block;
+      color: #fe142f;
+    }
+   
+  /* .topnav.responsive .main-navbar{
+    position: relative;
+    padding: 20px;
+  }
+  
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  } */
+}
+
+@media screen and (max-width: 988px) {
 
   .hero-headline {
     font-size: 4rem;
+  }
+}
+  .main-navbar {
+    padding-top: 20px;
+    float: left;
+  }
+
+@media screen and (min-width: 989px) {
+
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .main-navbar {
+    padding-top: 0;
   }
 }
