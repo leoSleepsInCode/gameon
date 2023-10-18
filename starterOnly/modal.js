@@ -32,7 +32,7 @@ const termsError       = document.getElementById("termsError");
 // *********** FUNCTIONS ***********
 
 function toggleMenu() {
-    var navbar = document.querySelector(".main-navbar");
+    let navbar = document.querySelector(".main-navbar");
     navbar.classList.toggle("show-menu");
 }
 
