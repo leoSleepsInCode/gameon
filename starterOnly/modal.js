@@ -268,7 +268,8 @@ function checkTerms() {
  */
 function addListeners() {
 
-  firstNameInput.addEventListener("blur", function () {
+  firstNameInput.addEventListener("blur", function (event) {
+    event.preventDefault();
     checkFirstName();
   });
 
@@ -280,6 +281,25 @@ function addListeners() {
   emailInput.addEventListener("blur", function () {
     checkEmail();
   })
+
+  birthdateInput.addEventListener("blur", function () {
+    checkBirthdate();
+  })
+
+  quantityInput.addEventListener("blur", function () {
+    checkQuantity();
+  })
+
+  termsCheckbox1.addEventListener("click", function () {
+    checkTerms();
+  })
+
+  radioButtonInputs.forEach(function (radioButtonInput) {
+    radioButtonInput.addEventListener("click", function () {
+      checkRadioButton();
+    })
+  })
+
 }
 
 /**
