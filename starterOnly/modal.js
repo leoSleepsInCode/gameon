@@ -91,6 +91,7 @@ function checkFirstName() {
   } else {
     firstNameError.textContent = "";
     firstNameError.classList.remove("visible");
+    firstNameInput.classList.remove("error-input");
     return true;
   }
 }
@@ -116,6 +117,7 @@ function checkLastName() {
   } else {
     lastNameError.textContent = "";
     lastNameError.classList.remove("visible");
+    lastNameInput.classList.remove("error-input");
     return true;
   }
 }
@@ -142,6 +144,7 @@ function checkEmail() {
   else {
     emailError.textContent = "";
     emailError.classList.remove("visible");
+    emailInput.classList.remove("error-input");
     return true;
   }
 }
@@ -169,6 +172,7 @@ function checkBirthdate () {
   else {
     birthdateError.textContent = "";
     birthdateError.classList.remove("visible");
+    birthdateInput.classList.remove("error-input");
     return true;
   }
 }
@@ -196,6 +200,7 @@ function checkQuantity() {
   else {
     quantityError.textContent = "";
     quantityError.classList.remove("visible");
+    quantityInput.classList.remove("error-input");
     return true;
   }
 }
